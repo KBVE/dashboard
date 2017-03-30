@@ -1,0 +1,46 @@
+{% extends "master" %}
+{% set body_classes = 'navbar-disabled sidebar-disabled footer-disabled sub-navbar-disabled' %}
+
+{% block content %}
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="panel panel-default b-a-2 no-bg b-gray-dark">
+            <div class="panel-heading text-center">
+              <a href="../">
+                <img src="../assets/images/spin-logo-inverted-@2X.png" alt="Logo" class="m-t-3 m-b-3 h-20"></a>
+            </div>
+            <div class="panel-body">
+              {% if old('errors') %}
+                <div class="alert alert-danger">
+                  {% for error in old('errors') %}
+                    <li> {{ error.message | capitalize }} </li>
+                  {% endfor %}
+                </div>
+              {% endif %}
+
+              <h2 class="text-center f-w-300 m-b-0">
+                Login</h2>
+              <form class="m-t-3" action="/login" method="POST">
+                <div class="form-group">
+                  <input class="form-control" name="username" placeholder="Username" value="{{ old('username') }}">
+                </div>
+                <div class="form-group">
+                  <input class="form-control" name="password" type="password" placeholder="Password">
+                </div>
+                <input type="submit" role="button" class="btn btn-block m-b-2 btn-primary" value="Login">
+
+                {{ csrfField }}
+              </form>
+            </div>
+            <div class="panel-footer b-a-0 b-r-a-0">
+              <a href="../pages/forgot-password.html">Forgot Password?</a>
+              <a href="../pages/register.html" class="pull-right">Register</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
